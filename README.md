@@ -74,5 +74,3 @@ Made with ❤️ by [Shayan Chakraborty](https://github.com/Rexona-3112)
 ## 📄 License
 
 This project is open-source under the [MIT License](LICENSE).
-
-````
