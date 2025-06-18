@@ -1,6 +1,3 @@
----
-
-```markdown
 # 🛡️ VulnHunter – Cybersecurity Vulnerability Scanner
 
 **VulnHunter** is a simple yet powerful web-based vulnerability scanner built with Flask. It scans web applications for common security issues including OWASP Top 10 vulnerabilities and generates a PDF report of the findings.
@@ -79,5 +76,3 @@ Made with ❤️ by [Shayan Chakraborty](https://github.com/Rexona-3112)
 This project is open-source under the [MIT License](LICENSE).
 
 ````
-
----
