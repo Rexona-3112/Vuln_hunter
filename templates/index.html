@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>VulnHunter - Cyber Security Scanner</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- Background Cyber Video -->
+<video autoplay muted loop id="bgVideo">
+  <source src="{{ url_for('static', filename='video/background.mp4') }}" type="video/mp4">
+</video>
+<div id="videoOverlay"></div>
+
+<!-- INTRO SCREEN -->
+{% if show_intro %}
+<section id="introScreen">
+  <div class="logo-text">
+    🛡️ <span class="green">Vuln</span><span class="neon">Hunter</span>
+  </div>
+  <h1 class="glitch-text">>>> Initializing VulnHunter...</h1>
+  <div id="bootLog" class="terminal-box" style="display:none;"></div>
+  <p id="typewriter" style="display:none;"></p>
+  <h2 id="countdown" style="display:none;"></h2>
+  <button id="beginIntro" onclick="initIntro()" class="btn btn-outline-success mt-3">
+    ▶ Start Terminal Boot
+  </button>
+</section>
+{% endif %}
+
+<!-- MAIN SCANNER FORM -->
+<div class="container">
+  <h2 class="text-center mb-4">🚀 VulnHunter - Cybersecurity Scanner</h2>
+  <form method="POST" onsubmit="startScan()">
+    <div class="mb-3">
+      <label for="url" class="form-label">Target URL</label>
+      <input type="text" class="form-control" name="url" placeholder="https://example.com" required />
+    </div>
+    <div class="text-center my-3">
+      <label class="form-label">Select Vulnerabilities to Scan:</label><br />
+      <div class="form-check form-switch d-inline-block mx-2">
+        <input class="form-check-input" type="checkbox" id="selectAll" onchange="toggleAll(this)" />
+        <label class="form-check-label" for="selectAll">All</label>
+      </div>
+      {% for option in ["xss", "sqli", "cmd", "ssrf", "auth", "headers", "js"] %}
+      <div class="form-check form-switch d-inline-block mx-2">
+        <input class="form-check-input scan-option" type="checkbox" name="{{ option }}" id="{{ option }}" />
+        <label class="form-check-label" for="{{ option }}">{{ option.upper() }}</label>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-scan mt-3">
+        <span id="rocketIcon">🚀</span> Start Scan
+      </button>
+    </div>
+    <div id="progressContainer" class="mt-4" style="display:none;">
+      <label>Scanning Progress:</label>
+      <div class="progress" style="height: 20px;">
+        <div id="progressBar" class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: 0%;">0%</div>
+      </div>
+    </div>
+  </form>
+
+  {% if findings %}
+  <h4 class="mt-5">Scan Results</h4>
+  <pre>
+{% for v in findings %}
+- {{ v.type }} [{{ v.level }}]
+  → {{ v.description }}
+  → Fix: {{ v.recommendation }}
+  → Location: {{ v.location }}
+
+{% endfor %}
+  </pre>
+  <div class="text-center mt-3">
+    <a href="/download-report" class="btn btn-outline-success">⬇️ Download PDF Report</a>
+  </div>
+  {% endif %}
+</div>
+
+<!-- Load JS -->
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

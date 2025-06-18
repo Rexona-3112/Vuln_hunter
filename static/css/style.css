@@ -1,0 +1,150 @@
+body {
+  background-color: #121212;
+  color: #39FF14;
+  font-family: 'Courier New', monospace;
+}
+
+#bgVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -2;
+  object-fit: cover;
+  filter: blur(5px) brightness(0.5);
+}
+
+#videoOverlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+.container {
+  margin-top: 50px;
+  max-width: 900px;
+  background: #1e1e1e;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
+}
+
+.btn-scan {
+  background-color: #39FF14;
+  color: #121212;
+  font-weight: bold;
+}
+
+pre {
+  background-color: #0f0f0f;
+  padding: 15px;
+  border: 1px solid #39FF14;
+  border-radius: 5px;
+  color: #39FF14;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.form-check-input {
+  border-radius: 50%;
+  transform: scale(1.2);
+}
+
+#rocketIcon {
+  display: inline-block;
+  transition: transform 1s ease-in-out;
+}
+.orbiting {
+  animation: orbit 2s linear infinite;
+}
+.blastoff {
+  animation: blastoff 2s forwards ease-in;
+}
+@keyframes orbit {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes blastoff {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translate(400px, -600px) scale(2); opacity: 0; }
+}
+
+.glitch-text {
+  animation: glitch 1s infinite alternate;
+  position: relative;
+}
+@keyframes glitch {
+  0% { text-shadow: 2px 2px #39ff14, -2px -2px #0f0; transform: skew(0deg); }
+  25% { text-shadow: -2px -1px #0f0, 2px 1px #39ff14; transform: skew(-2deg); }
+  50% { text-shadow: 2px 0 #0f0, -2px 1px #39ff14; transform: skew(2deg); }
+  75% { text-shadow: -1px 1px #39ff14, 1px -1px #0f0; transform: skew(-1deg); }
+  100% { text-shadow: 2px 2px #0f0, -2px -2px #39ff14; transform: skew(1deg); }
+}
+
+@keyframes flickerLogo {
+  0% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0.9; transform: scale(1); }
+}
+
+#introScreen {
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+}
+
+.logo-text {
+  font-size: 4rem;
+  margin-bottom: 10px;
+  animation: flickerLogo 2s ease-in-out;
+  background-color: rgba(0,0,0,0.3);
+  padding: 5px 15px;
+  border-radius: 10px;
+}
+.neon {
+  color: #39FF14;
+}
+.green {
+  color: #0f0;
+}
+.terminal-box {
+  max-height: 150px;
+  overflow-y: auto;
+  width: 80%;
+  text-align: left;
+  font-size: 1.00rem;
+  background-color: rgba(8,8,8,0.3);
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #0f0;
+  backdrop-filter: blur(2px);
+}
+.launch-blast {
+  animation: zoomLaunch 0.8s ease-out forwards;
+  color: #39FF14;
+  font-weight: bold;
+}
+
+@keyframes zoomLaunch {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  40% {
+    transform: scale(2.5);
+  }
+  100% {
+    transform: translate(500px, -500px) scale(3);
+    opacity: 0;
+  }
+}
